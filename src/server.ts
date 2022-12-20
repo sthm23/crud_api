@@ -4,6 +4,7 @@ import { getAllUsers } from './controllers/getAllUsers.js';
 import { createUser } from './controllers/createUser.js';
 import {HEADER_CONTENT_TYPE, IUsers, statusCode} from './interfaces/interfaces.js';
 import { getOneUser } from './controllers/getUserByID.js';
+import { deleteUser } from './controllers/deleteUser.js';
 
 const usersArr:IUsers[] = [
     {
@@ -50,7 +51,7 @@ const server = createServer((req, res)=>{
     } else if(method === 'PUT' && url === '/api/users/'+id){
         console.log('put one');
     } else if(method === 'DELETE' && url === '/api/users/'+id){
-        console.log('delete one');
+        deleteUser(req, res, usersArr);
     } else {
         res.writeHead(statusCode.wrongData, HEADER_CONTENT_TYPE);
         res.end(JSON.stringify({Message: "You wrote bad path request"}));
