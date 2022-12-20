@@ -21,8 +21,11 @@
   },
   "homepage": "https://github.com/sthm23/crud_api#readme",
   "devDependencies": {
+    "@types/uuid": "^9.0.0",
+    "dotenv": "^16.0.3",
     "nodemon": "^2.0.20",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "uuid": "^9.0.0"
   },
   "dependencies": {
     "@types/node": "^18.11.17",
