@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from "http";
-import { IUsers } from "../server.js";
+import {HEADER_CONTENT_TYPE, IUsers, statusCode} from '../interfaces/interfaces.js';
 import {version, validate, v4} from 'uuid';
 import { checkUser } from "./checkUserValidate.js";
 
@@ -18,16 +18,16 @@ export function createUser(req:IncomingMessage, res:ServerResponse, users:IUsers
 
         if(check === true) {
             users.push(newUser);
-            res.writeHead(201, { 'Content-Type': 'application/json' });
+            res.writeHead(statusCode.createUser, HEADER_CONTENT_TYPE);
             res.end(JSON.stringify(newUser));
         } else {
-            res.writeHead(400, {});
+            res.writeHead(statusCode.wrongData, HEADER_CONTENT_TYPE);
             res.end(JSON.stringify({message: "all properties did not written"}));
         }
     })
 
     req.on('error', ()=>{
-        res.writeHead(500, {});
+        res.writeHead(statusCode.serverError, HEADER_CONTENT_TYPE);
         res.end(JSON.stringify({message: "Something was happened in server"}));
     });
 }

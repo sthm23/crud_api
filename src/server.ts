@@ -1,14 +1,9 @@
 import {createServer} from 'http'
 import {config} from 'dotenv';
-import {version, validate, v4} from 'uuid';
 import { getAllUsers } from './controllers/getAllUsers.js';
 import { createUser } from './controllers/createUser.js';
-export interface IUsers {
-    id?: string
-    username: string
-    age: number
-    hobbies: string[] | []
-}
+import {HEADER_CONTENT_TYPE, IUsers, statusCode} from './interfaces/interfaces.js';
+
 const usersArr:IUsers[] = [];
 const PORT = config().parsed?.PORT || 5005;
 
@@ -31,7 +26,7 @@ const server = createServer((req, res)=>{
     } else if(method === 'DELETE' && url === '/api/users/'+id){
         console.log('delete one');
     } else {
-        res.writeHead(404, {'Content-Type': 'application/json'});
+        res.writeHead(statusCode.notFoundID, HEADER_CONTENT_TYPE);
         res.end(JSON.stringify({Message: "You write bad path request"}));
     }
 })
