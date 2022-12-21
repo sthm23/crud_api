@@ -5,12 +5,13 @@ import { createUser } from './controllers/createUser.js';
 import {HEADER_CONTENT_TYPE, IUsers, statusCode} from './interfaces/interfaces.js';
 import { getOneUser } from './controllers/getUserByID.js';
 import { deleteUser } from './controllers/deleteUser.js';
+import { updateUser } from './controllers/updateUser.js';
 
 const usersArr:IUsers[] = [
     {
         "id": "e4df5e6d-3bd0-4941-86b3-9d66d50729ae",
         "username": "sanjar",
-        "age": 22,
+        "age": 28,
         "hobbies": [
             "sakrash"
         ]
@@ -49,7 +50,7 @@ const server = createServer((req, res)=>{
         createUser(req, res, usersArr);
 
     } else if(method === 'PUT' && url === '/api/users/'+id){
-        console.log('put one');
+        updateUser(req, res, usersArr)
     } else if(method === 'DELETE' && url === '/api/users/'+id){
         deleteUser(req, res, usersArr);
     } else {
@@ -60,4 +61,10 @@ const server = createServer((req, res)=>{
 
 server.listen(PORT, ()=>{
     console.log('server running in port '+PORT);
+})
+
+process.on('SIGINT', ()=>{
+    server.close(err=>{
+        console.log('some error server');
+    })
 })
