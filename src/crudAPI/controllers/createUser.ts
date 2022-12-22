@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from "http";
-import {HEADER_CONTENT_TYPE, IUsers, statusCode} from '../interfaces/interfaces.js';
-import {version, validate, v4} from 'uuid';
-import { checkUser } from "./checkUserValidate.js";
+import {HEADER_CONTENT_TYPE, IUsers, statusCode} from '../interfaces/interfaces';
+import {v4} from 'uuid';
+import { checkUser } from "./checkUserValidate";
 
 
 export function createUser(req:IncomingMessage, res:ServerResponse, users:IUsers[]):void {

@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import {HEADER_CONTENT_TYPE, IUsers, statusCode} from '../interfaces/interfaces.js';
+import {HEADER_CONTENT_TYPE, IUsers, statusCode} from '../interfaces/interfaces';
 import {validate} from 'uuid'
-import { checkUser } from './checkUserValidate.js';
+import { checkUser } from './checkUserValidate';
 
 export function updateUser(req:IncomingMessage, res:ServerResponse, users:IUsers[]):void {
     const id = req.url?.split('/')[3]!;

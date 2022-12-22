@@ -1,4 +1,4 @@
-import {HEADER_CONTENT_TYPE, IUsers, statusCode} from '../interfaces/interfaces.js';
+import {IUsers} from '../interfaces/interfaces';
 
 export function checkUser(user:IUsers):boolean {
     const id = user.hasOwnProperty("id");

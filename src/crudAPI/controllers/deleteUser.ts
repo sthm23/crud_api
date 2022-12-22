@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import {HEADER_CONTENT_TYPE, IUsers, statusCode} from '../interfaces/interfaces.js';
+import {HEADER_CONTENT_TYPE, IUsers, statusCode} from '../interfaces/interfaces';
 import {validate} from 'uuid'
 
 export function deleteUser(req:IncomingMessage, res:ServerResponse, users:IUsers[]):void {
