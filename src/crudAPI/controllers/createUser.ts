@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from "http";
-import {HEADER_CONTENT_TYPE, IUsers, statusCode} from '../interfaces/interfaces';
+import {HEADER_CONTENT_TYPE, IUsers, statusCode, textMessage} from '../interfaces/interfaces';
 import {v4} from 'uuid';
 import { checkUser } from "./checkUserValidate";
 
@@ -22,12 +22,12 @@ export function createUser(req:IncomingMessage, res:ServerResponse, users:IUsers
             res.end(JSON.stringify(newUser));
         } else {
             res.writeHead(statusCode.wrongData, HEADER_CONTENT_TYPE);
-            res.end(JSON.stringify({message: "all properties did not written"}));
+            res.end(JSON.stringify({message: textMessage.notAllProp}));
         }
     })
 
     req.on('error', ()=>{
         res.writeHead(statusCode.serverError, HEADER_CONTENT_TYPE);
-        res.end(JSON.stringify({message: "Something was happened in server"}));
+        res.end(JSON.stringify({message: textMessage.serverError}));
     });
 }

@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import {HEADER_CONTENT_TYPE, IUsers, statusCode} from '../interfaces/interfaces';
+import {HEADER_CONTENT_TYPE, IUsers, statusCode, textMessage} from '../interfaces/interfaces';
 import {validate} from 'uuid'
 import { checkUser } from './checkUserValidate';
 
@@ -22,7 +22,7 @@ export function updateUser(req:IncomingMessage, res:ServerResponse, users:IUsers
 
         if(!check2) {
             res.writeHead(statusCode.notFoundID, HEADER_CONTENT_TYPE);
-            res.end(JSON.stringify({message: "Written wrong properties"}));
+            res.end(JSON.stringify({message: textMessage.wrongProp}));
             return
         }
 
@@ -33,11 +33,11 @@ export function updateUser(req:IncomingMessage, res:ServerResponse, users:IUsers
             return
         }else if(userIndex !== -1 && check === false) {
             res.writeHead(statusCode.notFoundID, HEADER_CONTENT_TYPE);
-            res.end(JSON.stringify({message: 'ID was not in format UUID'}));
+            res.end(JSON.stringify({message: textMessage.wrongIdFormat}));
             return
         } else {
             res.writeHead(statusCode.wrongData, HEADER_CONTENT_TYPE);
-            res.end(JSON.stringify({message: 'User Not Found'}));
+            res.end(JSON.stringify({message: textMessage.userNotFound}));
             return
         }
     })

@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import {HEADER_CONTENT_TYPE, IUsers, statusCode} from '../interfaces/interfaces';
+import {HEADER_CONTENT_TYPE, IUsers, statusCode, textMessage} from '../interfaces/interfaces';
 import {validate} from 'uuid'
 
 export function getOneUser(req:IncomingMessage, res:ServerResponse, users:IUsers[]):void {
@@ -12,9 +12,9 @@ export function getOneUser(req:IncomingMessage, res:ServerResponse, users:IUsers
         res.end(JSON.stringify(user));
     }else if(user !== undefined && check === false) {
         res.writeHead(statusCode.notFoundID, HEADER_CONTENT_TYPE);
-        res.end(JSON.stringify({message: 'ID was not in format UUID'}));
+        res.end(JSON.stringify({message: textMessage.wrongIdFormat}));
     } else {
         res.writeHead(statusCode.wrongData, HEADER_CONTENT_TYPE);
-        res.end(JSON.stringify({message: 'User Not Found'}));
+        res.end(JSON.stringify({message: textMessage.userNotFound}));
     }
 }

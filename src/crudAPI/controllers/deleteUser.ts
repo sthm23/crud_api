@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import {HEADER_CONTENT_TYPE, IUsers, statusCode} from '../interfaces/interfaces';
+import {HEADER_CONTENT_TYPE, IUsers, statusCode, textMessage} from '../interfaces/interfaces';
 import {validate} from 'uuid'
 
 export function deleteUser(req:IncomingMessage, res:ServerResponse, users:IUsers[]):void {
@@ -10,12 +10,12 @@ export function deleteUser(req:IncomingMessage, res:ServerResponse, users:IUsers
     if(userIndex !== -1 && check === true) {
         users.splice(userIndex, 1);
         res.writeHead(statusCode.deleteUser, HEADER_CONTENT_TYPE);
-        res.end(JSON.stringify({message: 'user has been deleted'}));
+        res.end(JSON.stringify({message: textMessage.userDeleted}));
     }else if(userIndex !== -1 && check === false) {
         res.writeHead(statusCode.notFoundID, HEADER_CONTENT_TYPE);
-        res.end(JSON.stringify({message: 'ID was not in format UUID'}));
+        res.end(JSON.stringify({message: textMessage.wrongIdFormat}));
     } else {
         res.writeHead(statusCode.wrongData, HEADER_CONTENT_TYPE);
-        res.end(JSON.stringify({message: 'User Not Found'}));
+        res.end(JSON.stringify({message: textMessage.userNotFound}));
     }
 }

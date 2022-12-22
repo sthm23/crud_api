@@ -14,4 +14,14 @@ export enum statusCode {
     serverError = 500
 }
 
+export enum textMessage {
+    wrongPath = "You wrote bad path request",
+    wrongProp = "Written wrong properties",
+    wrongIdFormat = "ID was not in format UUID",
+    userNotFound = "User Not Found",
+    userDeleted = "User has been deleted",
+    notAllProp = "All required properties not written",
+    serverError =  "Something was happened in server"
+}
+
 export const HEADER_CONTENT_TYPE = {'Content-Type': 'application/json'};
