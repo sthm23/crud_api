@@ -68,11 +68,14 @@ describe('Test all requests GET POST PUT DELETE', () => {
     test('DELETE /api/users/id - expecting status code 204' , async () => {
         const res = await response.del(`${url}/${id}`);
         expect(res.statusCode).toBe(204);
+        expect(res.body).toEqual("");
     })
 
     test('GET /api/users/id - expecting status code 404' , async () => {
+        const text = {message: textMessage.userNotFound};
         const res = await response.get(`${url}/${id}`);
         expect(res.statusCode).toBe(404);
+        expect(res.body).toEqual(text);
     })
 
 })
