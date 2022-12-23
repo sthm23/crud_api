@@ -25,6 +25,11 @@ $ npm run start:dev
 ```shell
 $ npm run start:prod
 ```
+5. Run project in multi mode
+
+```shell
+$ npm run start:multi
+```
 ---
 ## How to use
 
@@ -69,4 +74,9 @@ Implemented 3 test scenarios for the API:
 
 ```shell
 $ npm run test
+```
+Run test in coverage mode:
+
+```shell
+$ npm run test:cover
 ```
